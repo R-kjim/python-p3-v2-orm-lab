@@ -5,7 +5,7 @@ import random
 from department import Department
 from employee import Employee
 from review import Review
-import ipdb
+# import ipdb
 
 
 def reset_database():
@@ -25,7 +25,6 @@ def reset_database():
     Review.create(2023, "Efficient worker", employee1.id)
     Review.create(2022, "Good work ethic", employee1.id)
     Review.create(2023, "Excellent communication skills", employee2.id)
-
-
 reset_database()
-ipdb.set_trace()
+
+

@@ -136,6 +136,7 @@ class Employee:
         """Return an Employee object having the attribute values from the table row."""
 
         # Check the dictionary for  existing instance using the row's primary key
+        
         employee = cls.all.get(row[0])
         if employee:
             # ensure attributes match row values in case local instance was modified
@@ -183,8 +184,15 @@ class Employee:
         """
 
         row = CURSOR.execute(sql, (name,)).fetchone()
+        print (row)
         return cls.instance_from_db(row) if row else None
 
     def reviews(self):
         """Return list of reviews associated with current employee"""
-        pass
+        sql="""
+            SELECT * FROM reviews WHERE employee_id=?
+            """
+        rows=CURSOR.execute(sql,(self.id,)).fetchall()
+        from review import Review
+        # return [Employee.find_by_id(row) for row in rows]
+        return [Review.instance_from_db(row) for row in rows]
